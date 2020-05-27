@@ -1,0 +1,254 @@
+{
+  "intents": [
+    {
+      "intent": "Rain",
+      "examples": [
+        {
+          "text": "i want crops for rainy"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Hi",
+      "examples": [
+        {
+          "text": "hii"
+        },
+        {
+          "text": "welcome"
+        },
+        {
+          "text": "hello"
+        },
+        {
+          "text": "hi"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "suitablesoil",
+      "examples": [
+        {
+          "text": "Suitable soil for crop paddy?"
+        },
+        {
+          "text": "Suitable soil for crop Wheat?"
+        },
+        {
+          "text": "Suitable soil for crop Rice?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "thankyou",
+      "examples": [
+        {
+          "text": "thank you"
+        },
+        {
+          "text": "ok"
+        },
+        {
+          "text": "thanks"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Winter",
+      "examples": [
+        {
+          "text": "i want crops for winter"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Summer",
+      "examples": [
+        {
+          "text": "I want crops for summer"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "thanks",
+      "output": {
+        "generic": [
+          {
+            "source": "https://thumbs.dreamstime.com/b/hand-drawn-have-nice-day-146618910.jpg",
+            "response_type": "image"
+          }
+        ]
+      },
+      "conditions": "#thankyou",
+      "dialog_node": "node_6_1590559855002",
+      "previous_sibling": "node_5_1590560347334"
+    },
+    {
+      "type": "standard",
+      "title": "Crops",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Spinach, Carrot, Capsicum, Green peas"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#Winter",
+      "dialog_node": "node_5_1590560347334",
+      "previous_sibling": "node_4_1590560876810"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Welcome to Crop recommendation Bot"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#Hi",
+      "dialog_node": "node_10_1590562043454",
+      "previous_sibling": "node_7_1590559210159"
+    },
+    {
+      "type": "standard",
+      "title": "Recommendation",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "cucumber, watermelon, tomatoes would be best suitable for the weather conditions. "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#Summer",
+      "dialog_node": "node_7_1590559210159",
+      "previous_sibling": "node_6_1590559855002"
+    },
+    {
+      "type": "standard",
+      "title": "Suggestion",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Rice, Ragi, Cotton, Maize"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#Rain",
+      "dialog_node": "node_4_1590560876810",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_10_1590562043454",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Welcome ",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "Crop Recommendation",
+  "language": "en",
+  "description": "Recommends suitable crop with suitable kind of soil with the climate."
+}
